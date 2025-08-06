@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="offerRide.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+    <div class="navbarM">
+        <div class="homeA">
+            <a href="homepage.html" id="homeL">BuddyWheels</a>
+        </div>
+
+        <div class="navL">
+            <a href="homepage.html" class="navL">Home</a>
+            <a href="rideSearch.html" class="navL">Ride-Search</a>
+            <a href="offerride.html" id="navOpen">Offer-Ride</a>
+            <a href="contactUs.html" class="navL">Contact Us</a>
+            <a href="Profile.html" class="navL profileL">
+                <img src="./pics/image.png" alt="Profile" class="profile-img" />
+            </a>
+        </div>
+    </div>
+
+    <div class="hero">
+        <svg class="wave" viewBox="0 0 1440 320">
+            <path fill="#d7f5fa" fill-opacity="1"
+                d="M0,160L60,165.3C120,171,240,181,360,176C480,171,600,149,720,154.7C840,160,960,192,1080,186.7C1200,181,1320,139,1380,117.3L1440,96V0H0Z">
+            </path>
+        </svg>
+        <aside>
+            <p id="one">Share Your Journey</p>
+            <p id="two">Earn money while helping others travel efficiently. Post your available seats and connect with
+                verified riders.</p>
+        </aside>
+    </div>
+
+
+    <div class="form">
+
+        <div class="form-step active">
+            <img src="./pics/Group 1.png" alt="" class="stepimg">
+            <p>Route Details</p>
+            <div class="forminner">
+                <p>Where are you going?</p>
+
+                <div class="formInner1">
+                    <span>
+                        <label for="">From</label>
+                        <input type="text" placeholder="Departure City">
+                    </span>
+
+                    <span>
+                        <label for="">To</label>
+                        <input type="text" placeholder="Destination City">
+                    </span>
+
+                </div>
+
+                <div class="formInner1">
+                    <span>
+                        <label for="">Date</label>
+                        <input type="date">
+                    </span>
+
+                    <span>
+                        <label for="">Departure Time</label>
+                        <input type="time">
+                    </span>
+
+                </div>
+
+                <hr>
+
+                <aside>
+                    <button onclick="nextStep()">Next</button>
+                </aside>
+
+
+            </div>
+        </div>
+
+        <div class="form-step">
+
+            <img src="./pics/Group 2.png" alt="" class="stepimg">
+            <p>Trip Information</p>
+            <div class="forminner">
+                <p>Trip Details</p>
+
+                <div class="formInner1">
+                    <span>
+                        <label for="">Available Seats</label>
+                        <input type="number" placeholder="How many passangers?">
+                    </span>
+
+                    <span>
+                        <label for="">Price per seat</label>
+                        <input type="number" placeholder="&#x20B9; Amount">
+                    </span>
+
+                </div>
+
+                <div class="formInner1" id="formInner1Id">
+                    <span>
+                        <label for="">Additional Information</label>
+                        <input type="textarea"
+                            placeholder="Any specific pickup points, route details, or preferences...">
+                    </span>
+
+                </div>
+
+                <hr>
+
+                <aside>
+                    <button style="float: left;background-color: white;color: black;" onclick="prevStep()">Previous</button>
+                    <button onclick="nextStep()">Next</button>
+                </aside>
+
+
+            </div>
+        </div>
+
+        <div class="form-step">
+            <img src="./pics/Group 3.png" alt="" class="stepimg">
+            <p>Car & Preferences</p>
+            <div class="forminner">
+                <p>About your car</p>
+
+                <div class="formInner1" style="display: block;">
+                    <span>
+                        <label for="">Car Model</label>
+                        <input type="text" placeholder="e.g., Maruti Swift, Hyundai i20">
+                    </span>
+
+                    <span style="margin-top: 20px;">
+                        <label for="">Number Plate</label>
+                        <input type="text" placeholder="e.g., GJ11AK3840">
+                    </span>
+
+                </div>
+
+                <hr>
+
+                <aside>
+                    <button style="float: left;background-color: white;color: black;" onclick="prevStep()">Previous</button>
+                    <button>Publish Ride</button>
+                </aside>
+
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="heroEnd">
+        <p id="why">Why offer Rides with BuddyWheels?</p>
+        <div class="heroEnd2">
+            <div class="one1">
+                <p style="font-size: 50px;margin-top: 0;">💰</p>
+                <p style="font-size: 23px;font-weight: 900;margin-top: -50px;">Earn Money</p>
+                <p style="color: rgba(0, 0, 0, 0.573);margin-top: -10px;">Cover your fuel costs and earn extra income from your daily commute.</p>
+            </div>
+            <div class="one1">
+                <p style="font-size: 50px;margin-top: 0;">🌱</p>
+                <p style="font-size: 23px;font-weight: 900;margin-top: -50px;">Help Environment</p>
+                <p style="color: rgba(0, 0, 0, 0.573);margin-top: -10px;">Reduce carbon footprint by sharing rides and optimizing vehicle usage.</p>
+            </div>
+            <div class="one1">
+                <p style="font-size: 50px;margin-top: 0;">👥</p>
+                <p style="font-size: 23px;font-weight: 900;margin-top: -50px;">Meet People</p>
+                <p style="color: rgba(0, 0, 0, 0.573);margin-top: -10px;">Connect with like-minded travelers and build new social connections.</p>
+            </div>
+        </div>
+    </div>
+
+     <footer class="footer">
+        <div class="footer-column">
+            <h3>BUDDY WHEELS</h3>
+            <p>Your smart way to share rides and save the planet.</p>
+        </div>
+
+        <div class="footer-column">
+            <h3>Quick Links</h3>
+            <a href="homepage.html">Home</a>
+            <a href="rideSearch.html">Find a Ride</a>
+            <a href="offerride.html">Offer a Ride</a>
+            <a href="#">About Us</a>
+            <a href="contactUs.html">Contact</a>
+        </div>
+
+        <div class="footer-column">
+            <h3>Contact Us</h3>
+            <p>Email: support@buddywheels.com</p>
+            <p>Phone: +91 94288 40204</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/mann.khant.12"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/mann_khant_12/?hl=en"><i class="fab fa-instagram"></i></a>
+                <a href="https://in.linkedin.com/in/mann-khant-608a52343"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            © 2025 BuddyWheels. All rights reserved.
+        </div>
+    </footer>
+
+
+    <script>
+        let currentStep = 0;
+        const steps = document.querySelectorAll(".form-step");
+
+        function showStep(index) {
+            steps.forEach((step, i) => {
+                step.classList.toggle("active", i === index);
+            });
+        }
+
+        function nextStep() {
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        }
+
+        function prevStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

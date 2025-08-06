@@ -1,0 +1,212 @@
+body {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+  overscroll-behavior: none;
+  background-color: #f9fcfe; /* 🔧 Added light background for a cleaner look */
+  color: #113056; /* 🔧 Set default text color for readability */
+}
+
+.navbarM {
+  height: 4.5rem;
+  background-color: #113056;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem; /* 🔧 Changed from px to rem for responsive spacing */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 🔧 Subtle shadow for depth */
+}
+
+#homeL {
+  display: inline-block;
+  text-decoration: none;
+  color: aliceblue;
+  font-weight: bold;
+  font-size: 2rem;
+  transition: transform 0.5s ease, color 0.3s ease;
+}
+
+#homeL:hover {
+  color: #00ffff;
+  transform: scale(1.2); /* 🔧 Slightly reduced scale for less aggressive zoom */
+}
+
+/* 🔧 Reworked .navL for better alignment and responsiveness */
+.navL {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  text-decoration: none;
+  color: aliceblue;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.profile-img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white; /* 🔧 Subtle border for contrast */
+}
+
+.hero {
+  position: relative;
+  top: 40px;
+  height: 350px;
+  background-color: #d7f5fa;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.05); /* 🔧 Softer box shadow */
+}
+
+/* 🔧 Adjusted logo positioning for responsiveness */
+#logo2 {
+  position: absolute;
+  height: 250px;
+  left: 10%;
+}
+
+#logoname {
+  position: absolute;
+  height: 180px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50px;
+}
+
+.seamless {
+  font-size: 2.5rem;
+  font-weight: 800;
+  padding-left: 100px;
+  color: #113056;
+}
+
+.para {
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0 100px 20px 100px; /* 🔧 Unified padding */
+  line-height: 1.6; /* 🔧 Better readability */
+}
+
+.parabox {
+  background-color: #e9fcff;
+  box-shadow: 0 -30px 40px #dce8eb, 0 30px 40px #dce8eb;
+  padding: 2rem;
+  border-radius: 16px; /* 🔧 Rounded edges for polish */
+}
+
+/* 🔧 Centered and spaced Top Rides content */
+.toprides {
+  background-color: #d5f8fe;
+  box-shadow: #93ebfb 0px 22px 70px 4px;
+  width: 96%;
+  margin: 100px auto 0 auto;
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.toprides h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #113056;
+  text-decoration: underline;
+  margin-bottom: 1rem;
+}
+
+.toprides blockquote {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 2rem auto;
+}
+
+.toprides button {
+  display: block;
+  margin: 0 auto;
+  background-color: rgb(2, 75, 131);
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border-radius: 30px;
+  color: aliceblue;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.toprides button:hover {
+  background-color: #026cbd;
+}
+
+.footer {
+  background-color: #0a1b30;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.footer h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.footer p,
+.footer a {
+  color: #a9bcd0;
+  font-size: 0.95rem;
+}
+
+.footer a:hover {
+  color: cyan;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #415a77;
+  font-size: 0.85rem;
+  color: #778da9;
+}
+
+.social-icons a {
+  font-size: 1.2rem;
+  margin-right: 1rem;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.social-icons a:hover {
+  color: cyan;
+  transform: scale(1.2);
+}
+
+/* 🔧 Added responsiveness to hero images and carousel */
+@media (max-width: 768px) {
+  #logo2, #logoname {
+    position: static;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .navL {
+    gap: 1rem;
+  }
+
+  .toprides blockquote {
+    margin-left: auto;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-column {
+    margin: 1rem 0;
+  }
+}

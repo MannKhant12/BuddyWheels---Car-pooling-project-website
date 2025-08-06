@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>.form-step {
+  display: none;
+}
+
+.form-step.active {
+  display: block;
+}
+</style>
+</head>
+<body>
+  <form id="multiForm">
+  <!-- Step 1 -->
+  <div class="form-step active">
+    <label>Name:</label>
+    <input type="text" name="name" required>
+    <label>Email:</label>
+    <input type="email" name="email" required>
+    <button type="button" onclick="nextStep()">Next</button>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="form-step">
+    <label>Phone:</label>
+    <input type="text" name="phone" required>
+    <label>City:</label>
+    <input type="text" name="city" required>
+    <button type="button" onclick="prevStep()">Back</button>
+    <button type="submit">Submit</button>
+  </div>
+</form>
+
+<script>let currentStep = 0;
+const steps = document.querySelectorAll(".form-step");
+
+function showStep(index) {
+  steps.forEach((step, i) => {
+    step.classList.toggle("active", i === index);
+  });
+}
+
+function nextStep() {
+  if (currentStep < steps.length - 1) {
+    currentStep++;
+    showStep(currentStep);
+  }
+}
+
+function prevStep() {
+  if (currentStep > 0) {
+    currentStep--;
+    showStep(currentStep);
+  }
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Carousel</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .carousel {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .carousel-inner {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 400px; /* Adjust as needed */
+        }
+
+        .carousel-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            transform: translateX(100%);
+            transition: transform 0.6s ease-in-out;
+            backface-visibility: hidden;
+        }
+
+        .carousel-item.active {
+            transform: translateX(0);
+        }
+
+        .carousel-item.prev {
+            transform: translateX(-100%);
+        }
+
+        .carousel-item img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Indicators */
+        .carousel-indicators {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin-right: 15%;
+            margin-bottom: 1rem;
+            margin-left: 15%;
+            list-style: none;
+        }
+
+        .carousel-indicators button {
+            box-sizing: content-box;
+            flex: 0 1 auto;
+            width: 30px;
+            height: 3px;
+            padding: 0;
+            margin-right: 3px;
+            margin-left: 3px;
+            text-indent: -999px;
+            cursor: pointer;
+            background-color: #000000;
+            background-clip: padding-box;
+            border: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;    
+            opacity: 0.5;
+            transition: opacity 0.6s ease;
+        }
+
+        .carousel-indicators button.active {
+            opacity: 1;
+        }
+
+        /* Controls */
+        .carousel-control-prev,
+        .carousel-control-next {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 15%;
+            padding: 0;
+            color: #000;
+            text-align: center;
+            background: none;
+            border: 0;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            color: #ff8800;
+            text-decoration: none;
+            outline: 0;
+            opacity: 1;
+        }
+
+        .carousel-control-prev {
+            left: 0;
+        }
+
+        .carousel-control-next {
+            right: 0;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            display: inline-block;
+            width: 2rem;
+            height: 2rem;
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: 100% 100%;
+        }
+
+        .carousel-control-prev-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='m11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+        }
+
+        .carousel-control-next-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='m4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+
+        .carousel-control-prev:hover .carousel-control-prev-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffff00'%3e%3cpath d='m11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z'/%3e%3c/svg%3e");
+        }
+
+        .carousel-control-next:hover .carousel-control-next-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffff00'%3e%3cpath d='m4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+        }
+
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
+        }
+
+        /* Demo styling removed - add your own content styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+    <div id="carouselExampleIndicators" class="carousel" data-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-target="#carouselExampleIndicators" data-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-target="#carouselExampleIndicators" data-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-target="#carouselExampleIndicators" data-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <!-- Content of slide 1 -->
+            </div>
+            <div class="carousel-item">
+                <!-- Content of slide 2 -->
+            </div>
+            <div class="carousel-item">
+                <!-- Content of slide 3 -->
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <script>
+        class Carousel {
+            constructor(element) {
+                this.carousel = element;
+                this.items = this.carousel.querySelectorAll('.carousel-item');
+                this.indicators = this.carousel.querySelectorAll('.carousel-indicators button');
+                this.prevButton = this.carousel.querySelector('.carousel-control-prev');
+                this.nextButton = this.carousel.querySelector('.carousel-control-next');
+                this.currentIndex = 0;
+                this.isTransitioning = false;
+                this.autoplayInterval = null;
+                
+                this.init();
+            }
+            
+            init() {
+                // Set up event listeners
+                this.prevButton.addEventListener('click', () => this.prev());
+                this.nextButton.addEventListener('click', () => this.next());
+                
+                // Set up indicator clicks
+                this.indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => {
+                        const direction = index > this.currentIndex ? 'next' : 'prev';
+                        this.goToSlide(index, direction);
+                    });
+                });
+                
+                // Auto-play functionality (if data-ride="carousel" is present)
+                if (this.carousel.dataset.ride === 'carousel') {
+                    this.startAutoplay();
+                    
+                    // Pause on hover
+                    this.carousel.addEventListener('mouseenter', () => this.stopAutoplay());
+                    this.carousel.addEventListener('mouseleave', () => this.startAutoplay());
+                }
+                
+                // Keyboard navigation
+                this.carousel.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.prev();
+                    if (e.key === 'ArrowRight') this.next();
+                });
+                
+                // Make carousel focusable for keyboard navigation
+                this.carousel.setAttribute('tabindex', '0');
+            }
+            
+            goToSlide(index, direction = 'next') {
+                if (this.isTransitioning || index === this.currentIndex) return;
+                
+                this.isTransitioning = true;
+                
+                const currentItem = this.items[this.currentIndex];
+                const nextItem = this.items[index];
+                
+                // Set initial position for next item
+                if (direction === 'next') {
+                    nextItem.style.transform = 'translateX(100%)';
+                } else {
+                    nextItem.style.transform = 'translateX(-100%)';
+                }
+                
+                // Force reflow
+                nextItem.offsetHeight;
+                
+                // Start transition
+                currentItem.classList.remove('active');
+                if (direction === 'next') {
+                    currentItem.style.transform = 'translateX(-100%)';
+                } else {
+                    currentItem.style.transform = 'translateX(100%)';
+                }
+                
+                nextItem.classList.add('active');
+                nextItem.style.transform = 'translateX(0)';
+                
+                // Update indicators
+                this.indicators[this.currentIndex].classList.remove('active');
+                this.indicators[this.currentIndex].removeAttribute('aria-current');
+                this.indicators[index].classList.add('active');
+                this.indicators[index].setAttribute('aria-current', 'true');
+                
+                this.currentIndex = index;
+                
+                // Reset transition flag and clean up styles after animation
+                setTimeout(() => {
+                    this.isTransitioning = false;
+                    this.items.forEach(item => {
+                        if (!item.classList.contains('active')) {
+                            item.style.transform = 'translateX(100%)';
+                        }
+                    });
+                }, 600);
+            }
+            
+            next() {
+                const nextIndex = (this.currentIndex + 1) % this.items.length;
+                this.goToSlide(nextIndex, 'next');
+            }
+            
+            prev() {
+                const prevIndex = (this.currentIndex - 1 + this.items.length) % this.items.length;
+                this.goToSlide(prevIndex, 'prev');
+            }
+            
+            startAutoplay() {
+                this.stopAutoplay(); // Clear any existing interval
+                this.autoplayInterval = setInterval(() => this.next(), 4000);
+            }
+            
+            stopAutoplay() {
+                if (this.autoplayInterval) {
+                    clearInterval(this.autoplayInterval);
+                    this.autoplayInterval = null;
+                }
+            }
+        }
+        
+        // Initialize carousel when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const carouselElement = document.querySelector('.carousel');
+            if (carouselElement) {
+                new Carousel(carouselElement);
+            }
+        });
+        
+        // Touch/swipe support for mobile
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel');
+            let startX = null;
+            let startY = null;
+            
+            carousel.addEventListener('touchstart', function(e) {
+                startX = e.touches[0].clientX;
+                startY = e.touches[0].clientY;
+            });
+            
+            carousel.addEventListener('touchend', function(e) {
+                if (!startX || !startY) return;
+                
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                
+                const diffX = startX - endX;
+                const diffY = startY - endY;
+                
+                // Only trigger if horizontal swipe is greater than vertical
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+                    if (diffX > 0) {
+                        // Swipe left - next slide
+                        carousel.querySelector('.carousel-control-next').click();
+                    } else {
+                        // Swipe right - previous slide
+                        carousel.querySelector('.carousel-control-prev').click();
+                    }
+                }
+                
+                startX = null;
+                startY = null;
+            });
+        });
+    </script>
+</body>
+</html>
