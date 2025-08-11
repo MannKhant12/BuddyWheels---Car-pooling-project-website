@@ -26,7 +26,7 @@ BuddyWheels is a simple and user-friendly carpooling platform designed to connec
 
 ## Check it out here 
 
-link : 
+link : https://github.com/MannKhant12/BuddyWheels---Car-pooling-project-website/site/homePage.html
 
 ## License
 
